@@ -1,3 +1,5 @@
+""" MORNING LECTURE """
+
 def hello_world(): #use snake casing -> underscore between words. colon instead of {}
     print("Hello World") #print is equivalent to console.log in JS. you can use either types of quotations.
 
@@ -137,3 +139,19 @@ for key, val in capitals.items():
 for item in capitals.values():
     print(item)
 #prints out tuples for each key:value pair
+
+""" AFTERNOON LECTURE """
+
+#The def keyword signifies the declaration of a function. This indicates that the following code is a function and assigns a name to that function, so we can call it later. Parameters are inputs the function is expecting and appear inside the parenthesis that follow the function name.
+
+#Here's a basic example of a function:
+
+def add(a,b):	# function name: 'add', parameters: a and b
+    x = a + b	# process
+    return x	# return value: x
+
+def print_to_255_or_else(num=255):
+    for i in range(0, num+1, 1): #need +1 because a for loop is not inclusive of the max value
+        print(i)
+
+print_to_255_or_else(17)
