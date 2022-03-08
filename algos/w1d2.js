@@ -27,7 +27,7 @@ function parensValid(str) {
     }
     if (openCounter == closedCounter){
         for (let j = 0; j < array.length; j++) {
-        //// need to create condition where the loop returns false if a closed parenthesis comes before an opening parenthesis
+        //// need to create condition where the loop returns false if parentheses are not in the correct order
         }
     }
     else (openCounter != closedCounter)
