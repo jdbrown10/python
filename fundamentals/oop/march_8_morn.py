@@ -62,6 +62,7 @@ class Dog:
         self.breed = data["breed"]
         self.age = data["age"]
         self.personality_type = data["p_type"]
+        self.energy_level = 100
 
 spike_data = {
     "name" : "Spike",
@@ -70,4 +71,35 @@ spike_data = {
     "p_type" : "Mellow"
 }
 
+#Class attributes-- attributes not initialized with the "self" keyword. They don't go inside the init method--they get attached to the class. They're the same thing throughout and every instance has the same value. It can be overridden within an instance.
 
+class Dog:
+    is_mammal = True #class attribute
+    surname = "SuperSnoot" #class attribute
+    all_dog_names = [] #this will collect the name from every Dog instance (line 84)
+    def __init__(self, data):
+        self.name = data["name"]
+        self.breed = data["breed"]
+        self.age = data["age"]
+        self.personality_type = data["p_type"]
+        Dog.all_dog_names.append(self.name) #adds the name of every instance of a Dog every time one is initialized and stores it at the class level
+
+#Methods-- you must ALWAYS pass "self" into an instanced method
+
+#this method uses an f string to allow any Dog to use its own name when it calls on this method
+def go_for_a_walk(self):
+    self.energy_level = self.energy_level - 5
+    print(f"My name is {self.name} and my owner took me for a stroll! Now my energy level is {self.energy_level}!")
+
+def take_a_nap(self):
+    self.energy_level = 100
+    print("zzzzzzzzzzz...")
+
+spike.go_for_a_walk() #drops spike's energy level by 5
+spike.go_for_a_walk()
+spike.go_for_a_walk()
+spike.go_for_a_walk()
+spike.go_for_a_walk()
+spike.go_for_a_walk()
+spike.go_for_a_walk()
+spike.take_a_nap() #back to 100
