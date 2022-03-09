@@ -16,6 +16,10 @@ class User:
         self.account_balance -= amount
         rykard.account_balance += amount
         return self
+    def transfer_money_to_someone(self, other_user, amount):
+        self.account_balance -= amount
+        other_user.account_balance += amount
+        return self
 
 margit = User("margit", "margit@fellomen.ring", 400)
 rennala = User("rennala", "rennala@respec", 1000)
@@ -27,4 +31,4 @@ rennala.make_deposit(300).make_deposit(200).make_withdrawal(700).make_withdrawal
 
 rykard.make_deposit(10).make_withdrawal(2).make_withdrawal(3).make_withdrawal(1).display_user_balance()
 
-margit.transfer_money_to_rykard(90).display_user_balance().display_user_balance()
+margit.transfer_money_to_someone(rykard, 90).display_user_balance().display_user_balance()
