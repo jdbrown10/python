@@ -12,10 +12,10 @@ class User:
     def display_user_balance(self):
         print(self.account_balance)
         return self
-    def transfer_money_to_rykard(self, amount):
-        self.account_balance -= amount
-        rykard.account_balance += amount
-        return self
+    # def transfer_money_to_rykard(self, amount):
+    #     self.account_balance -= amount
+    #     rykard.account_balance += amount
+    #     return self
     def transfer_money_to_someone(self, other_user, amount):
         self.account_balance -= amount
         other_user.account_balance += amount
