@@ -12,3 +12,5 @@
 #if you close it and open it again, all you have to do is re-enter the virvual environment (using "pipenv shell"), you don't have to re-install anything
 
 #DO NOT create a virtual environment inside of another one
+
+#to run it in the terminal, activate the shell and paste in "python3 [filename].py"
