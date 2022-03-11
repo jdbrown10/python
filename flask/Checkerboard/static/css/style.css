@@ -1,0 +1,17 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.color1{
+    background-color: red;
+}
+.color2{
+    background-color: blue;
+}
+
+table tr td{
+    width: 50px;
+    height: 50px;
+}
