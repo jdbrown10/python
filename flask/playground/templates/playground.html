@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playground</title>
+</head>
+<style>
+    .box {
+        min-width: 150px;
+        min-height: 150px;
+        margin: 1.5px;
+        background-color: {{color}}
+    }
+    .flex {
+        display: flex;
+    }
+</style>
+<body>
+    <h1>This is the Playground!</h1>
+    <div class="flex">
+    {% for i in range (0, x, 1): %}
+        <div class="box"></div>
+    {% endfor %}
+    </div>
+</body>
+</html>
