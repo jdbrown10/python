@@ -99,4 +99,4 @@ function generateCoinChange(money) {
     console.log(`${finalCoinValues[0]} quarters, ${finalCoinValues[1]} dimes, ${finalCoinValues[2]} nickles, ${finalCoinValues[3]} pennies`)
 }
 
-generateCoinChange(17.40)
+generateCoinChange(1.73)
