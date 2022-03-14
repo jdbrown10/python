@@ -12,7 +12,7 @@
 
 <body>
     <h1 class="text-center">Dojo Survey</h1>
-    <div class="container pt-3">
+    <div class="container-sm pt-3">
         <form class="container align-items-center" role="form" action="/process" method="post">
             <div class="mb-3 d-flex align-items-center justify-content-between">
                 <label for="name" class="form-label">Your Name:</label>
@@ -61,6 +61,26 @@
                 <label for="sixbagels">6 bagels</label><br>
                 <input type="radio" name="bagels" value="yikes">
                 <label for="yikes">Prefer not to answer...</label>
+            </div>
+            <h4 class="text-center">Which of these vehicles do you like?</h4>
+            <p class="text-center">(Select as many as you like.)</p>
+            <div class="d-flex justify-content-around">
+                <div>
+                    <input type="checkbox" name="bike" value="Bike">
+                    <label for="bike"> I like bikes</label><br>
+                </div>
+                <div>
+                    <input type="checkbox" name="train" value="Bike">
+                    <label for="train"> I like trains</label><br>
+                </div>
+                <div>
+                    <input type="checkbox" name="boat" value="Bike">
+                    <label for="boat"> I like boats</label><br>
+                </div>
+                <div>
+                    <input type="checkbox" name="car" value="Bike">
+                    <label for="car"> I like cars</label><br>
+                </div>
             </div>
             <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary text-center">Submit</button>
