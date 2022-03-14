@@ -18,6 +18,7 @@ def process():
     session['location'] = request.form['location']
     session['language'] = request.form['language']
     session['optional'] = request.form['optional']
+    session['bagels'] = request.form['bagels']
     return redirect('/result')
 
 #==========================
@@ -25,7 +26,7 @@ def process():
 #==========================
 @app.route('/result')
 def result():
-    return render_template("result.html", name=session['name'], location=session['location'], language=session['language'], optional=session['optional'])
+    return render_template("result.html", name=session['name'], location=session['location'], language=session['language'], optional=session['optional'], bagels=session['bagels'])
 
 
 if __name__=="__main__":
