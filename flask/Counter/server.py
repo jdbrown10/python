@@ -1,5 +1,4 @@
-from itertools import count
-from flask import Flask, render_template, redirect, request, session
+from flask import Flask, render_template, redirect, session
 app = Flask (__name__)
 app.secret_key = "sasadffsadsa4677d5fasdf78sa6f"
 
@@ -27,7 +26,7 @@ def add():
 #==========================
 #RESET ROUTE - Resets Count
 #==========================
-@app.route("/destroy_session")
+@app.route("/reset")
 def reset():
     session.clear()
     return redirect("/")
