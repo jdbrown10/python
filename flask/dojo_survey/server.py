@@ -19,6 +19,10 @@ def process():
     session['language'] = request.form['language']
     session['optional'] = request.form['optional']
     session['bagels'] = request.form['bagels']
+    session['bike'] = request.form['bike']
+    session['train'] = request.form['train']
+    session['boat'] = request.form['boat']
+    session['car'] = request.form['car']
     return redirect('/result')
 
 #==========================
@@ -26,8 +30,30 @@ def process():
 #==========================
 @app.route('/result')
 def result():
+    if 'bagels' not in session:
+        session['bagels'] = "none"
+    
+    if 'bike' not in session:
+        session['bike'] = "none"
+
+    if 'train' not in session:
+        session['train'] = "none"
+
+    if 'boat' not in session:
+        session['boat'] = "none"
+
+    if 'car' not in session:
+        session['car'] = "none"
+
     return render_template("result.html", name=session['name'], location=session['location'], language=session['language'], optional=session['optional'], bagels=session['bagels'])
 
+#==========================
+#RESET ROUTE - Clears Session
+#==========================
+@app.route("/reset")
+def reset():
+    session.clear()
+    return redirect("/")
 
 if __name__=="__main__":
     app.run(debug=True, port=5001)
