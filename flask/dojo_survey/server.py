@@ -14,15 +14,29 @@ def index():
 #==========================
 @app.route('/process', methods=["POST"])
 def process():
+    if 'bagels' not in request.form:
+        session['bagels'] = None
+    else:
+        session['bagels'] = request.form['bagels']
+
+    if 'bike' not in request.form:
+        session['bike'] = "Nope"
+    else:
+        session['bike'] = "For sure"
+
+    if 'train' not in request.form:
+        session['train'] = "Nope"
+    else:
+        session['train'] = "Definitely"
+
+    if 'boat' not in request.form:
+        session['boat'] = "Nope"
+    else:
+        session['boat'] = "You love them"
     session['name'] = request.form['name']
     session['location'] = request.form['location']
     session['language'] = request.form['language']
     session['optional'] = request.form['optional']
-    session['bagels'] = request.form['bagels']
-    # session['bike'] = request.form['bike']
-    # session['train'] = request.form['train']
-    # session['boat'] = request.form['boat']
-    # session['car'] = request.form['car']
     return redirect('/result')
 
 #==========================
@@ -30,8 +44,6 @@ def process():
 #==========================
 @app.route('/result')
 def result():
-    # if 'bagels' not in session:
-    #     session['bagels'] = "none"
     
     # if 'bike' not in session:
     #     session['bike'] = "none"
