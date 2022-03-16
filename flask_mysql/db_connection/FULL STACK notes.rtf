@@ -1,0 +1,46 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2638
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 CONNECTING TO MYSQL\
+\
+\'97new command for installing things into your project folder\
+(Used to only have flask)\
+\
+pipenv install PyMySql Flask\
+\
+Stabilize your understanding of the database \'97 look at the ERD and make sure it\'92s set up correctly.\
+\
+Make sure the password in the mysqlconnection.py file is correct (\'91rootrogot\'92)\
+-it dictates how the queries are run, and what kind of responses we will get back.\
+\
+3 big rules\
+-insert queries will return the ID number of the row inserted\
+-select queries will return a list of dictionaries\
+-update and delete queries will return nothing\
+\
+\'97recommended to comment out the error handling lines (line 41 through 44) \'97 it controls how and where the errors will be thrown, and they allocate your errors to your terminal ONLY. Commenting them out will have the errors thrown in the HTML itself, as opposed to you doing operations and it looks like it\'92s working but it\'92s not and you can\'92t figure out why.\
+\
+MODEL FILES\
+-OOP should reflect what your database looks like\
+-should always be lower case, singular \'97 it\'92s the blueprint for creating one of something (whatever it\'92s referring to)\
+-every class has its own file right now (until we get to related data)\
+\
+-second half (@classmethod) dictates code queries. Make sure it\'92s inside the class! (Lined up with the init method) (class of \'93friend\'94 in the example)! If a method has a query inside of it, then it has to have the @classmethod decorator, because the whole class should have access to it.\
+\
+-this is the bottom-most layer, but the user side has to be able to burrow down the this layer.\
+\
+ORDER OF COMMUNICATION\
+Html -> server -> model\
+Model -> server -> html \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \'93MVC\'94 does not really describe the order of communication. Technically it\'92s  v  > c > m or m > c > v\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 The server is the middleman \
+\
+FOLLOW THE DATA FLOW. And build things out piece by piece.}
