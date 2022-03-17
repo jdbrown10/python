@@ -17,10 +17,10 @@ Stabilize your understanding of the database \'97 look at the ERD and make sure 
 Make sure the password in the mysqlconnection.py file is correct (\'91rootrogot\'92)\
 -it dictates how the queries are run, and what kind of responses we will get back.\
 \
-3 big rules\
--insert queries will return the ID number of the row inserted\
--select queries will return a list of dictionaries\
--update and delete queries will return nothing\
+WHAT DO QUERIES RETURN? (From the module)\
+-INSERT queries return the ID number of the row inserted\
+-SELECT queries return a list of dictionaries\
+-UPDATE and DELETE queries return nothing\
 \
 \'97recommended to comment out the error handling lines (line 41 through 44) \'97 it controls how and where the errors will be thrown, and they allocate your errors to your terminal ONLY. Commenting them out will have the errors thrown in the HTML itself, as opposed to you doing operations and it looks like it\'92s working but it\'92s not and you can\'92t figure out why.\
 \
@@ -37,10 +37,27 @@ ORDER OF COMMUNICATION\
 Html -> server -> model\
 Model -> server -> html \
 \
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-\cf0 \'93MVC\'94 does not really describe the order of communication. Technically it\'92s  v  > c > m or m > c > v\
+\'93MVC\'94 does not really describe the order of communication. Technically it\'92s  v  > c > m or m > c > v\
 \
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-\cf0 The server is the middleman \
+The server is the middleman \
 \
-FOLLOW THE DATA FLOW. And build things out piece by piece.}
+FOLLOW THE DATA FLOW. And build things out piece by piece.\
+\
+\
+\
+\'97\
+\
+SPEEDRUN: (I feel like I missed something but this is most of it)\
+\
+Import all your stuff\
+Make your server.py\
+Make your flask_app folder and put __init__.py in there\
+(Inside the __init__.py:\
+From flask import flask\
+App = flask(__name)\
+App.secret_key = \'93safasdfsasdf\'94)\
+Make your folders: \
+-config (mysqlconnection.py with the password and stuff in place)\
+-controllers (user_controller.py or whatever it\'92s called \'97 do your default imports (from flask_app import app, and from flask import render_template, etc etc, and default route (\'91/\'91) to render index.html), \
+-models (python), \
+-templates (html, drop in your bootstrap and maybe an h1 to test it)}
