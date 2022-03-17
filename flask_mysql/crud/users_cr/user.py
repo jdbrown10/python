@@ -21,9 +21,34 @@ class User:
         for user in results:
             users.append( cls(user) )
         return users
+
+    @classmethod
+    def get_one_user(cls, user_id):
+        query = "SELECT * FROM users WHERE id = %(user_id)s"
+
+        result = connectToMySQL('users_schema').query_db(query, user_id)
+
+        return cls(result[0])
+
+    @classmethod
+    def edit_one_user(cls, data):
+
+        query = "UPDATE users SET first_name=%(fname)s, last_name=%(lname)s, email=%(eml)s, updated_at=NOW() WHERE id=%(id)s"
+
+        #Hidden input in the form is passing throug the user_ID
+
+        return connectToMySQL('users_schema').query_db(query, data)
     
     @classmethod
-    def save(cls, data ):
+    def save(cls, data):
+        
         query = "INSERT INTO users ( first_name , last_name , email , created_at, updated_at ) VALUES ( %(fname)s , %(lname)s , %(eml)s , NOW() , NOW() );"
-        # data is a dictionary that will be passed into the save method from server.py
+
+        return connectToMySQL('users_schema').query_db( query, data )
+
+    @classmethod
+    def delete_user(cls, data):
+
+        query = "DELETE FROM users WHERE id = %(id)s"
+        
         return connectToMySQL('users_schema').query_db( query, data )
