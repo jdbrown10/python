@@ -12,7 +12,7 @@
     <h1 class="text-center">Edit User</h1>
     <div class="container">
         <form action="/edit_one/process" method="POST">
-            <input type="hidden" name="id" value="{{one_user.id}}">
+            <input type="hidden" name="id" value="{{ one_user.id }}">
             <div class="form-group">
                 <label for="fname">First Name:</label>
                 <input type="form-text" class="form-control" name="fname" value="{{ one_user.first_name }}">
@@ -28,6 +28,8 @@
             <br>
             <input type="submit" class="btn btn-primary" value="Update User">
         </form>
+        <br>
+        <p><a href="/">Home (I changed my mind!)</a></p>
     </div>
 </body>
 </html>

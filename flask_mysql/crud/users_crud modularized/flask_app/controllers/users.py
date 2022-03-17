@@ -26,18 +26,22 @@ def create_user_page():
 # PROCESS CREATE USER
 # ========================
 
-@app.route("/create_user_process", methods=['post'])
-def create_user_process():
+@app.route("/create_user_process", methods=['POST'])
+def create_user_process(): #I know if I'm redirecting to '/read_one/<int:user_id>' I need to pass the user_id into this function, but where to I get it from in the html?
+
     data = {
         "fname": request.form["fname"],
         "lname": request.form["lname"],
         "eml": request.form["eml"]
     }
-    User.save(data)
-    return redirect('/')
+
+
+    user_id = User.save(data) #the method still runs when saved to a variable, so this is fine
+
+    return redirect(f'/read_one/{user_id}')
 
 # ========================
-# DISPLAY ONE USER
+# SHOW ONE USER
 # ========================
 
 @app.route("/read_one/<int:user_id>")
@@ -74,8 +78,12 @@ def display_edit_one(user_id):
 
 @app.route("/edit_one/process", methods=['POST'])
 def edit_one():
+    
     User.edit_one_user(request.form)
-    return redirect('/')
+
+    user_id = request.form["id"]
+
+    return redirect(f'/read_one/{user_id}')
 
 # ========================
 # PROCESS DELETE USER
