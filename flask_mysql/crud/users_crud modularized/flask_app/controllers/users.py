@@ -53,7 +53,7 @@ def read_one(user_id):
 
     one_user = User.get_one_user(query_user_data)
 
-    return render_template('read_one.html', one_user = one_user )
+    return render_template('read_one.html', one_user = one_user)
 
 
 # ========================
