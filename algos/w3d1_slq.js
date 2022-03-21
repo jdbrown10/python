@@ -1,3 +1,5 @@
+//SINGLY LINKED QUEUE
+
 class Node{
     constructor(value){
         this.value = value
