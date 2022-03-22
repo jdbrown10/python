@@ -34,6 +34,7 @@ class SLStack{
     pop(){
         if (this.top == null) {
             console.log('This stack is empty.')
+            return null
         } else {
             var temp = this.top.value;
             this.top = this.top.next;
