@@ -1,3 +1,5 @@
+//singly linked stack -- it's like a can of pringles!
+
 class Node{
     constructor(value){
         this.value = value
@@ -11,7 +13,7 @@ class SLStack{
         this.top = null
     }
 
-    // add a given value to your stack
+    // add a given value to your stack (add to the top)
     push(value){
         // #1 create our new node
         var newNode = new Node(value);
