@@ -3,7 +3,6 @@ from flask_app import app
 
 from flask_app.models.author import Author
 from flask_app.models.book import Book
-from flask_app.models.favorite import Favorite
 
 # ================================
 # RENDER ALL BOOKS
@@ -66,6 +65,6 @@ def create_link_book():
 
     #if book ID is equal to existing book ID, then alert (this author has already favorited that book)
 
-    Favorite.create_link(data)
+    Author.create_link(data)
 
     return redirect(f'/books/{request.form["book_id"]}')
