@@ -22,6 +22,8 @@ class Dojo:
 
         return dojos
 
+
+    #WHOOPS- so, I'm adding this comment welllll after submitting this assignment. Parsing data went completely over my head when I originally worked on this, and instead I figured out a way to make the functionality work without actually relating the tables together in a single method. I didn't even realize I was doing something strange at the time-- I was just like, "huh, I guess I don't need all that parsing stuff for this part? That seems weird." Now I realize that was NOT the proper way to do this, lol-- so it's on my agenda to come back and fix it soon.
     @classmethod
     def get_certain_dojo_name(cls, dojo_id):
         query = "SELECT name FROM dojos WHERE id = %(dojo_id)s"
