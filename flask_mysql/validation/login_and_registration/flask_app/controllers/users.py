@@ -5,7 +5,7 @@ bcrypt = Bcrypt(app)
 from flask_app.models.user import User
 
 #===================================
-# Render Dashboard
+# Render Register/Login
 # ==================================
 
 @app.route("/")
