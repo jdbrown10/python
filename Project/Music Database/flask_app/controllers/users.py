@@ -68,3 +68,24 @@ def logout():
     session.clear()
     flash("Logged out!")
     return redirect ("/")
+
+#=======================================
+#Render Dashboard
+#=======================================
+
+@app.route('/dashboard')
+def dashboard():
+
+    if "user_id" not in session:
+        flash("You have to login or register before entering =( sorry bout that...")
+        return redirect("/")
+
+    data = {
+        "user_id" : session["user_id"]
+    }
+
+    user = User.get_by_id(data)
+
+    # all_recipes = Recipe.get_all()
+
+    return render_template("dashboard.html", user = user) #all_songs = all_songs.... gotta go here

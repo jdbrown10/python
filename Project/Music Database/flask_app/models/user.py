@@ -67,3 +67,39 @@ class User:
 
 
         return is_valid
+
+#================================================================
+#Class Methods
+#================================================================
+
+    @classmethod
+    def get_by_email(cls,data):
+        query = "SELECT * FROM users WHERE email = %(email)s;"
+        result = connectToMySQL("music_schema").query_db(query,data)
+
+        # If there's no matching user:
+        if len(result) < 1:
+            return False
+            
+        return cls(result[0])
+
+    @classmethod
+    def get_by_id(cls,data):
+        query = "SELECT * FROM users WHERE id = %(user_id)s;"
+        result = connectToMySQL("music_schema").query_db(query,data)
+
+        # If there's no matching user:
+        if len(result) < 1:
+            return False
+
+        return cls(result[0])
+
+    @classmethod
+    def create_user(cls, data):
+        #no password confirmation here! that's not part of the database
+        query = "INSERT INTO users (first_name, last_name, email, password, created_at) VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password)s, NOW())"
+
+        results = connectToMySQL("music_schema").query_db(query,data)
+
+        #insert queries return an ID, so results are just a single ID of the newly created user
+        return results
