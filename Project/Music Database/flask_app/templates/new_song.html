@@ -55,7 +55,9 @@
                                                 <select class="mb-3 form-select" name="source">
                                                     <option selected>Select a source...</option>
                                                     <option value="">---</option>
-                                                    <option value="studio_album">Bloodborne</option>
+                                                    {% for source in all_sources%}
+                                                    <option value="{{ source.id }}">{{source.title}}</option>
+                                                    {% endfor %}
                                                 </select>
                                             </div>
                                             <div class="mb-3">
@@ -63,20 +65,9 @@
                                                 <select class="mb-3 form-select" name="album">
                                                     <option selected>Select an album...</option>
                                                     <option value="">---</option>
-                                                    <option value="studio_album">Bloodborne</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <label for="medium" class="form-label">Medium:</label>
-                                                <select class="mb-3 form-select" name="medium">
-                                                    <option selected>Select a medium...</option>
-                                                    <option value="">---</option>
-                                                    <option value="studio_album">Album</option>
-                                                    <option value="film">Film</option>
-                                                    <option value="tv">TV</option>
-                                                    <option value="video_game">Video Game</option>
-                                                    <option value="">---</option>
-                                                    <option value="misc">Miscellaneous</option>
+                                                    {% for album in all_albums%}
+                                                    <option value="{{ album.id }}">{{album.title}}</option>
+                                                    {% endfor %}
                                                 </select>
                                             </div>
                                             <div id="keyword_container">
@@ -84,7 +75,9 @@
                                                 <select class="mb-3 form-select" name="keyword" id="keyword_select">
                                                     <option selected>Select a keyword...</option>
                                                     <option value="">---</option>
-                                                    <option value="oboe">Oboe</option>
+                                                    {% for keyword in all_keywords%}
+                                                    <option value="{{ keyword.id }}">{{keyword.type}}</option>
+                                                    {% endfor %}
                                                 </select>
                                             </div>
                                             <div>
@@ -98,12 +91,13 @@
                                     <!-- ADD NEW SONG END -->
                                     
                                     <!-- ADD NEW OPTIONS (ALBUM, COMPOSER, ETC) BEGIN -->
-                                    <div class="d-flex" style="min-width: 325px;">
+                                    <div class="d-flex" style="min-width: 380px;">
                                         <div>
-                                            <p class="text-center" style="font-weight: bold;">Add New Options for Song Creation</p>
+                                            <p class="text-center" style="font-weight: bold;">Add More Options for Song Creation</p>
                                             <div>
                                                 <br>
                                                 <form action="/new_composer/process" method="POST">
+                                                    <p class="text-center">Add a new composer:</p>
                                                     <div class="d-flex justify-content-between" style="min-width: 325px;">
                                                         <div><input type="text" name="name"></div>
                                                         <input type="hidden" value="{{ user_id }}" name="user_id">
@@ -114,32 +108,23 @@
                                                     </div>
                                                 </form>
                                                 <br>
-                                                <form action="/new_source/process" method="POST">
-                                                    <div class="d-flex justify-content-between" style="min-width: 325px;">
-                                                        <div><input type="text" name="new_keyword"></div>
-                                                        <input type="hidden" value="{{ user_id }}" name="user_id">
-                                                        <div>
-                                                            <button type="submit" class="btn btn-sm btn-success">Add
-                                                                Source</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                                <br>
                                                 <form action="/new_album/process" method="POST">
+                                                    <p class="text-center">Add a new album:</p>
                                                     <div class="d-flex justify-content-between" style="min-width: 325px;">
-                                                        <div><input type="text" name="new_keyword"></div>
+                                                        <div><input type="text" name="title"></div>
+
                                                         <input type="hidden" value="{{ user_id }}" name="user_id">
-                                                        <div>
-                                                            <button type="submit" class="btn btn-sm btn-success">Add
-                                                                Album</button>
-                                                        </div>
+                                                        
+                                                        <button type="submit" class="btn btn-sm btn-success">Add
+                                                            Album</button>
                                                     </div>
                                                 </form>
                                                 <br>
                                                 <form action="/new_keyword/process" method="POST">
+                                                    <p class="text-center">Add a new keyword:</p>
                                                     <div class="d-flex justify-content-between" style="min-width: 325px;">
                                                         <input type="hidden" value="{{ user_id }}" name="user_id">
-                                                        <div><input type="text" name="new_keyword"></div>
+                                                        <div><input type="text" name="type"></div>
                                                         <div>
                                                             <button type="submit" class="btn btn-sm btn-success">Add
                                                                 Keyword</button>
@@ -147,6 +132,26 @@
                                                     </div>
                                                 </form>
                                                 <br>
+                                                <form action="/new_source/process" method="POST">
+                                                    <p class="text-center">Add a new source:</p>
+                                                    <div class="d-flex justify-content-between" style="min-width: 325px;">
+                                                        <div><input type="text" name="title"></div>
+                                                        <div>
+                                                            <select class="mb-3 form-select" name="medium" style="width: 120px;">
+                                                                <option selected>Medium...</option>
+                                                                <option value="">---</option>
+                                                                {% for medium in all_mediums %}
+                                                                <option value="{{medium.id}}">{{medium.type}}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </div>
+                                                        <input type="hidden" value="{{ user_id }}" name="user_id">
+                                                    </div>
+                                                    <div class="d-flex justify-content-center">
+                                                        <button type="submit" class="btn btn-sm btn-success">Add
+                                                            Source</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
