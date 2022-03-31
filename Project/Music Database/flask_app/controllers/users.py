@@ -55,7 +55,9 @@ def login():
     }
     if not User.validate_login(data):
         return redirect("/")
-    #query for user info based on email
+
+    #validation is good. 
+    # Then query for user info based on email... and then...
     user = User.get_by_email(data)
     
     #put the user ID into session and redirect to dashboard
@@ -85,7 +87,5 @@ def dashboard():
     }
 
     user = User.get_by_id(data)
-
-    # all_recipes = Recipe.get_all()
 
     return render_template("dashboard.html", user = user) #all_songs = all_songs.... gotta go here
