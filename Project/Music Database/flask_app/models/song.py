@@ -1,23 +1,23 @@
-# from flask_app.config.mysqlconnection import connectToMySQL
-# from flask import flash
+from flask_app.config.mysqlconnection import connectToMySQL
+from flask import flash
 
-# # model the class after the friend table from our database
-# class Song: 
-#     db = "music_schema"
-#     def __init__( self , data ):
-#         self.id = data['id']
+# model the class after the friend table from our database
+class Song: 
+    db = "music_schema"
+    def __init__( self , data ):
+        self.id = data['id']
 
-#         self.title = data['title']
-#         self.audio = data['audio']
+        self.title = data['title']
+        self.audio = data['audio']
 
-#         self.created_at = data['created_at']
-#         self.updated_at = data['updated_at']
+        self.created_at = data['created_at']
+        self.updated_at = data['updated_at']
 
-#         self.keywords = [] #placeholder for related data
+        self.keywords = [] #placeholder for related data
 
-#         self.composer = {}
-#         self.album = {}
-#         self.source = {}
+        self.composer = {}
+        self.album = {}
+        self.source = {}
 
 # #================================================================
 # #Static Methods
