@@ -83,6 +83,7 @@
                                             <div>
                                                 <p class="btn btn-sm" onclick="addKeyword()">+ Add Another Keyword...</p>
                                             </div>
+                                            <input type="hidden" id="keyword_counter" name="keyword_counter">
                                             <div>
                                                 <button type="submit" class="btn btn-success">Add Song</button>
                                             </div>
@@ -168,18 +169,7 @@
             </div>
         </div>
     </section>
-    <script>
-        var keywordCounter = 1
-        function addKeyword() {
-            var select = document.getElementById("keyword_select")
-            var clone = select.cloneNode(true)
-            var name = select.getAttribute("name") + keywordCounter++
-            clone.id = name
-            clone.setAttribute("name", name)
-            document.getElementById("keyword_container").appendChild(clone)
-            console.log(keywordCounter)
-        }
-    </script>
+    <script src="../static/script.js"></script>
 </body>
 
 </html>
