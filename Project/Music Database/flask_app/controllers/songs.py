@@ -39,41 +39,41 @@ def new_song():
 
     return render_template("new_song.html", user_id=session['user_id'], all_composers=all_composers, all_sources=all_sources, all_mediums=all_mediums, all_albums=all_albums, all_keywords=all_keywords)
 
-# @app.route('/new_song/process')
-# def new_song_process():
+@app.route('/new_song/process')
+def new_song_process():
         
-#     # validate the form data
+    # validate the form data
 
-#     num_of_keywords = int(request.form["keyword_counter"])
-
-
-#     keyword_ids = []
-
-#     data = {
-#         "title": request.form["title"],
-#         "user_id": request.form["user_id"],
-#         "file": request.form["file"],
-#         "composer": request.form["composer"],
-#         "source": request.form["source"],
-#         "album": request.form["album"]
-#     }
-
-#     keyword_ids.append(request.form["keyword"])
+    num_of_keywords = int(request.form["keyword_counter"])
 
 
-#     #if we get 5 keywords from the form, the first one is appended to the list on line 61. this loop needs to append the remaining 4 (whose names should have consecutively increasing numbers attached via the javascript function). this will count from one up to (but not including) the number of keywords, so if there were 5 total, it will add 4 more. but the name in the request.form needs to start at 2 and increase until it gets to 5, so we need to add one to it to get to the proper name for each keyword input. (i hope)
-#     for i in range (1, num_of_keywords):
-#         keyword_ids.append(request.form[f"keyword{i+1}"])
+    keyword_ids = []
+
+    data = {
+        "title": request.form["title"],
+        "user_id": request.form["user_id"],
+        "file": request.form["file"],
+        "composer": request.form["composer"],
+        "source": request.form["source"],
+        "album": request.form["album"]
+    }
+
+    keyword_ids.append(request.form["keyword"])
 
 
-#     if not Song.validate_song(data, keyword_ids):
-#         return redirect("/new_song")
+    #if we get 5 keywords from the form, the first one is appended to the list on line 61. this loop needs to append the remaining 4 (whose names should have consecutively increasing numbers attached via the javascript function). this will count from one up to (but not including) the number of keywords, so if there were 5 total, it will add 4 more. but the name in the request.form needs to start at 2 and increase until it gets to 5, so we need to add one to it to get to the proper name for each keyword input. (i hope)
+    for i in range (1, num_of_keywords):
+        keyword_ids.append(request.form[f"keyword{i+1}"])
 
-#     # save the new composer to the db
-#     Song.create_song(data)
 
-#     # redirect
+    if not Song.validate_song(data, keyword_ids):
+        return redirect("/new_song")
 
-#     flash("Song has been added! Keep adding more songs, or return to the dashboard to find your new song.")
+    # save the new composer to the db
+    Song.create_song(data)
 
-#     return redirect('/new_song')
+    # redirect
+
+    flash("Song has been added! Keep adding more songs, or return to the dashboard to find your new song.")
+
+    return redirect('/new_song')
