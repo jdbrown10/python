@@ -21,7 +21,7 @@ class Keyword:
         is_valid = True
 
         if len(data['type']) < 2:
-            flash("Keyword must be at least 2 characters")
+            flash("Keyword must be at least 2 characters.")
             is_valid = False
 
         if Keyword.get_keyword_by_type(data):

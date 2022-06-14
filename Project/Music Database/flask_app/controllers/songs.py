@@ -69,11 +69,14 @@ def new_song_process():
     if not Song.validate_song(data, keyword_ids):
         return redirect("/new_song")
 
-    # save the new composer to the db
-    Song.create_song(data)
+    # save the new song to the db
+    new_song_id = Song.create_song(data)
+
+    #create many to many links
+    for keyword_id in keyword_ids:
+        Song.create_keyword_link(keyword_id, new_song_id)
 
     # redirect
-
     flash("Song has been added! Keep adding more songs, or return to the dashboard to find your new song.")
 
     return redirect('/new_song')

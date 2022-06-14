@@ -19,50 +19,45 @@ class Song:
         self.album = {}
         self.source = {}
 
-# #================================================================
-# #Static Methods
-# #================================================================
+#================================================================
+#Static Methods
+#================================================================
 
-#     @staticmethod
-#     def validate_song(data, keyword_ids):
-#         is_valid = True
+    @staticmethod
+    def validate_song(data, keyword_ids):
+        is_valid = True
 
-#         if len(data['title']) < 2:
-#             flash("Song's title must be at least 2 characters")
-#             is_valid = False
+        if len(data['title']) < 2:
+            flash("Song's title must be at least 2 characters")
+            is_valid = False
 
-#         if len(data['file']) < 1:
-#             flash("Song must have a file!")
-#             is_valid = False
+        if len(data['file']) < 1:
+            flash("Song must have a file!")
+            is_valid = False
 
-#         for keyword_id in keyword_ids:
-#             if Song.get_song_with_keyword_id(keyword_id):
-#                 flash("That song already has one of those keywords!")
-#                 is_valid = False
+        for keyword_id in keyword_ids:
+            if Song.get_song_with_keyword_id(keyword_id):
+                flash("That song already has one of those keywords!")
+                is_valid = False
         
 
-#         return is_valid
+        return is_valid
 
-# #================================================================
-# #Class Methods
-# #================================================================
+#================================================================
+#Class Methods
+#================================================================
 
-#     @classmethod
-#     def create_song(cls, data):
+    @classmethod
+    def create_song(cls, data):
+        query = "INSERT INTO songs (title, audio, created_at, composer_id, source_id, album_id, keywords) VALUES ( %(title)s, %(audio)s), NOW(), %(composer_id)s, %(source_id)s, %(album_id)s;"
+
+        results = connectToMySQL('music_schema').query_db( query, data )
+
+        return results
+
+    @classmethod
+    def create_keyword_link(cls, keyword_id, new_song_id):
         
-        
-#         query = "INSERT INTO songs ( title, audio, created_at, composer_id, source_id, album_id) VALUES ( %(title)s, %(audio)s), NOW(), %(composer_id)s, %(source_id)s, %(album_id)s, %(keyword_id)s ;"
+        query = "INSERT INTO songs_keywords ( song_id, keyword_id ) VALUES ( %(new_song_id)s, %(keyword_id)s);"
 
-
-
-
-#         #loop here using counter variable to create keyword tables
-
-
-
-#         return connectToMySQL('music_schema').query_db( query, data )
-
-#     @classmethod
-#     def get_song_with_keyword_id(cls, data):
-
-#         #need to build this out still...
+        return connectToMySQL('music_schema').query_db( query, keyword_id, new_song_id )
