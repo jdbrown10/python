@@ -21,9 +21,6 @@ class Album:
     def validate_album(data):
         is_valid = True
 
-        if isinstance(data['type']) == False:
-            flash("Please select a composer from the list.")
-            is_valid = False
 
         if len(data['title']) < 2:
             flash("Album's title must be at least 2 characters")
