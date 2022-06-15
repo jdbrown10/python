@@ -2,6 +2,7 @@ from flask_app import app
 from flask import render_template, redirect, request, session, flash
 
 from flask_app.models.user import User
+from flask_app.models.song import Song
 
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
@@ -88,4 +89,6 @@ def dashboard():
 
     user = User.get_by_id(data)
 
-    return render_template("dashboard.html", user = user) #all_songs = all_songs.... gotta go here
+    all_songs = Song.get_all_songs(data)
+
+    return render_template("dashboard.html", user = user, all_songs = all_songs) #all_songs = all_songs.... gotta go here
