@@ -43,10 +43,11 @@ class Song:
         #     flash("Song must have an audio file!")
         #     is_valid = False
 
-        for keyword_id in keyword_ids:
-            if Song.get_song_with_keyword_id(keyword_id):
-                flash("That song already has one of those keywords!")
-                is_valid = False
+        #gotta build this method- get song with keyword ID
+        # for keyword_id in keyword_ids:
+        #     if Song.get_song_with_keyword_id(keyword_id):
+        #         flash("That song already has one of those keywords!")
+        #         is_valid = False
 
         return is_valid
 

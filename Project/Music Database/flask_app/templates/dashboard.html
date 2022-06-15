@@ -40,8 +40,7 @@
                                 </div>
                                 <div class="d-flex justify-content-around">
                                     <div>
-                                        <h5>~This is all hard coded right now lol~</h5>
-                                        <br> <br>
+                                        <br><br>
                                         <h5>Search Bar: ______________________________</h5>
                                         <br> <br>
                                         <h5>Assign a keyword to a song!</h5>
@@ -71,143 +70,27 @@
                                             <table class="table table-striped table-bordered table-hover table-sm" style="overflow-x: auto; white-space: nowrap" width="100%">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col" class="px-2 text-center">Select</th>
-                                                        <th scope="col" class="px-2 text-center">Song Title</th>
-                                                        <th scope="col" class="px-2 text-center">Composer</th>
+                                                        <th scope="col" class="px-2 text-center">Title</th>
+                                                        <th scope="col" class="px-2 text-center">Play</th>
                                                         <th scope="col" class="px-2 text-center">Album</th>
+                                                        <th scope="col" class="px-2 text-center">Composer</th>
                                                         <th scope="col" class="px-2 text-center">Source</th>
                                                         <th scope="col" class="px-2 text-center">Medium</th>
                                                         <th scope="col" class="px-2 text-center">Tags</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    {% for one_song in all_songs|sort(attribute='title') %}
                                                     <tr>
-                                                        <td class="px-2">Checkbox</td> <!-- make a form with a hidden input and a checkbox to add the selected keyword from a dropdown at the top to all of the checked songs on the page -->
-                                                        <td class="px-2">PLAY BUTTON | Song Title</td>
-                                                        <td class="px-2">Composer Name</td>
-                                                        <td class="px-2">Album Title</td>
-                                                        <td class="px-2">Source Title</td>
-                                                        <td class="px-2">Source Medium</td>
-                                                        <td class="px-2">tags! happy, sad, trumpet, guitar, chase, raining, 5/4 time, etc Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime eligendi repellat minima error, voluptas dolorem totam! Id blanditiis dolor inventore quos. Inventore repellat maiores voluptatem et. Et iure eveniet consequatur. </td>
+                                                        <td class="px-1"><a href="/song/{{one_song.id}}">{{ one_song.title }}</a></td>
+                                                        <td class="px-1"><audio controls src="{{one_song.audio}}"></audio></a></td>
+                                                        <td class="px-1">{{ one_song.album.title }}</a></td>
+                                                        <td class="px-1">{{ one_song.composer.name }}</a></td>
+                                                        <td class="px-1">{{ one_song.source.title }}</a></td>
+                                                        <td class="px-1">medium here</a></td>
+                                                        <td class="px-1">Tags here</td>
                                                     </tr>
-                                                    <tr>
-                                                        <td class="px-2">Checkbox</td>
-                                                        <td class="px-2">PLAY BUTTON | Song Title</td>
-                                                        <td class="px-2">Composer Name</td>
-                                                        <td class="px-2">Album Title</td>
-                                                        <td class="px-2">Source Title</td>
-                                                        <td class="px-2">Source Medium</td>
-                                                        <td class="px-2">tags! happy, sad, trumpet, guitar, chase, raining, 5/4 time, etc</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="px-2">Checkbox</td>
-                                                        <td class="px-2">PLAY BUTTON | Song Title</td>
-                                                        <td class="px-2">Composer Name</td>
-                                                        <td class="px-2">Album Title</td>
-                                                        <td class="px-2">Source Title</td>
-                                                        <td class="px-2">Source Medium</td>
-                                                        <td class="px-2">tags! happy, sad, trumpet, guitar, chase, raining, 5/4 time, etc</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="px-2">Checkbox</td>
-                                                        <td class="px-2">PLAY BUTTON | Song Title</td>
-                                                        <td class="px-2">Composer Name</td>
-                                                        <td class="px-2">Album Title</td>
-                                                        <td class="px-2">Source Title</td>
-                                                        <td class="px-2">Source Medium</td>
-                                                        <td class="px-2">tags! happy, sad, trumpet, guitar, chase, raining, 5/4 time, etc</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="px-2">Checkbox</td>
-                                                        <td class="px-2">PLAY BUTTON | Song Title</td>
-                                                        <td class="px-2">Composer Name</td>
-                                                        <td class="px-2">Album Title</td>
-                                                        <td class="px-2">Source Title</td>
-                                                        <td class="px-2">Source Medium</td>
-                                                        <td class="px-2">tags! happy, sad, trumpet, guitar, chase, raining, 5/4 time, etc</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="px-2">Checkbox</td>
-                                                        <td class="px-2">PLAY BUTTON | Song Title</td>
-                                                        <td class="px-2">Composer Name</td>
-                                                        <td class="px-2">Album Title</td>
-                                                        <td class="px-2">Source Title</td>
-                                                        <td class="px-2">Source Medium</td>
-                                                        <td class="px-2">tags! happy, sad, trumpet, guitar, chase, raining, 5/4 time, etc</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="px-2">Checkbox</td>
-                                                        <td class="px-2">PLAY BUTTON | Song Title</td>
-                                                        <td class="px-2">Composer Name</td>
-                                                        <td class="px-2">Album Title</td>
-                                                        <td class="px-2">Source Title</td>
-                                                        <td class="px-2">Source Medium</td>
-                                                        <td class="px-2">tags! happy, sad, trumpet, guitar, chase, raining, 5/4 time, etc</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="px-2">Checkbox</td>
-                                                        <td class="px-2">PLAY BUTTON | Song Title</td>
-                                                        <td class="px-2">Composer Name</td>
-                                                        <td class="px-2">Album Title</td>
-                                                        <td class="px-2">Source Title</td>
-                                                        <td class="px-2">Source Medium</td>
-                                                        <td class="px-2">tags! happy, sad, trumpet, guitar, chase, raining, 5/4 time, etc</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="px-2">Checkbox</td>
-                                                        <td class="px-2">PLAY BUTTON | Song Title</td>
-                                                        <td class="px-2">Composer Name</td>
-                                                        <td class="px-2">Album Title</td>
-                                                        <td class="px-2">Source Title</td>
-                                                        <td class="px-2">Source Medium</td>
-                                                        <td class="px-2">tags! happy, sad, trumpet, guitar, chase, raining, 5/4 time, etc</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="px-2">Checkbox</td>
-                                                        <td class="px-2">PLAY BUTTON | Song Title</td>
-                                                        <td class="px-2">Composer Name</td>
-                                                        <td class="px-2">Album Title</td>
-                                                        <td class="px-2">Source Title</td>
-                                                        <td class="px-2">Source Medium</td>
-                                                        <td class="px-2">tags! happy, sad, trumpet, guitar, chase, raining, 5/4 time, etc</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="px-2">Checkbox</td>
-                                                        <td class="px-2">PLAY BUTTON | Song Title</td>
-                                                        <td class="px-2">Composer Name</td>
-                                                        <td class="px-2">Album Title</td>
-                                                        <td class="px-2">Source Title</td>
-                                                        <td class="px-2">Source Medium</td>
-                                                        <td class="px-2">tags! happy, sad, trumpet, guitar, chase, raining, 5/4 time, etc</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="px-2">Checkbox</td>
-                                                        <td class="px-2">PLAY BUTTON | Song Title</td>
-                                                        <td class="px-2">Composer Name</td>
-                                                        <td class="px-2">Album Title</td>
-                                                        <td class="px-2">Source Title</td>
-                                                        <td class="px-2">Source Medium</td>
-                                                        <td class="px-2">tags! happy, sad, trumpet, guitar, chase, raining, 5/4 time, etc</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="px-2">Checkbox</td>
-                                                        <td class="px-2">PLAY BUTTON | Song Title</td>
-                                                        <td class="px-2">Composer Name</td>
-                                                        <td class="px-2">Album Title</td>
-                                                        <td class="px-2">Source Title</td>
-                                                        <td class="px-2">Source Medium</td>
-                                                        <td class="px-2">tags! happy, sad, trumpet, guitar, chase, raining, 5/4 time, etc</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="px-2">Checkbox</td>
-                                                        <td class="px-2">PLAY BUTTON | Song Title</td>
-                                                        <td class="px-2">Composer Name</td>
-                                                        <td class="px-2">Album Title</td>
-                                                        <td class="px-2">Source Title</td>
-                                                        <td class="px-2">Source Medium</td>
-                                                        <td class="px-2">tags! happy, sad, trumpet, guitar, chase, raining, 5/4 time, etc</td>
-                                                    </tr>
-                                                    
+                                                    {% endfor %}
                                                 </tbody>
                                             </table>
 
