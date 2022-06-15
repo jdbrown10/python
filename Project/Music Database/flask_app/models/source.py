@@ -28,10 +28,14 @@ class Source:
         if Source.get_source_by_title(data):
             flash("That source is already in your database!")
             is_valid = False
+
+        if isinstance(data['type']) == False:
+            flash("Please select a composer from the list.")
+            is_valid = False
         
         #these are just the IDs from the mediums that I created
         #the user cannot create/edit/delete any mediums on their end, so the values within this list should never change
-        if (data['medium_id']) not in ["2", "3", "4", "5", "8"]:
+        if (data['medium_id']) not in ["6", "7", "8", "9"]:
             flash("Your source needs to have a medium!")
             is_valid = False
 

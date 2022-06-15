@@ -20,6 +20,10 @@ class Medium:
     def validate_medium(data):
         is_valid = True
 
+        if isinstance(data['type']) == False:
+            flash("Please select a composer from the list.")
+            is_valid = False
+
         if len(data['type']) < 2:
             flash("Medium must be at least 2 characters")
             is_valid = False

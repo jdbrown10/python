@@ -39,20 +39,17 @@ def new_song():
 
     return render_template("new_song.html", user_id=session['user_id'], all_composers=all_composers, all_sources=all_sources, all_mediums=all_mediums, all_albums=all_albums, all_keywords=all_keywords)
 
-@app.route('/new_song/process')
+@app.route('/new_song/process', methods=['POST'])
 def new_song_process():
         
-    # validate the form data
-
     num_of_keywords = int(request.form["keyword_counter"])
-
 
     keyword_ids = []
 
     data = {
         "title": request.form["title"],
         "user_id": request.form["user_id"],
-        "file": request.form["file"],
+        "audio": request.form.get("audio"),
         "composer": request.form["composer"],
         "source": request.form["source"],
         "album": request.form["album"]
@@ -62,10 +59,12 @@ def new_song_process():
 
 
     #if we get 5 keywords from the form, the first one is appended to the list on line 61. this loop needs to append the remaining 4 (whose names should have consecutively increasing numbers attached via the javascript function). this will count from one up to (but not including) the number of keywords, so if there were 5 total, it will add 4 more. but the name in the request.form needs to start at 2 and increase until it gets to 5, so we need to add one to it to get to the proper name for each keyword input. (i hope)
-    for i in range (1, num_of_keywords):
-        keyword_ids.append(request.form[f"keyword{i+1}"])
+    if num_of_keywords > 1:
+        for i in range (1, num_of_keywords):
+            keyword_ids.append(request.form["keyword" + f"{i}"])
 
 
+    # validate the form data
     if not Song.validate_song(data, keyword_ids):
         return redirect("/new_song")
 
@@ -74,9 +73,15 @@ def new_song_process():
 
     #create many to many links
     for keyword_id in keyword_ids:
-        Song.create_keyword_link(keyword_id, new_song_id)
+        keyword_data = {
+            "keyword_id": keyword_id,
+            "new_song_id": new_song_id
+        }
+        Song.create_keyword_link(keyword_data)
+        
 
-    # redirect
+    # do I want this flash message or nah?
     flash("Song has been added! Keep adding more songs, or return to the dashboard to find your new song.")
 
+    # redirect
     return redirect('/new_song')

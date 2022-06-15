@@ -21,6 +21,10 @@ class Composer:
     def validate_composer(data):
         is_valid = True
 
+        if isinstance(data['name']) == False:
+            flash("Please select a composer from the list.")
+            is_valid = False
+
         if len(data['name']) < 2:
             flash("Composer's name must be at least 2 characters")
             is_valid = False
