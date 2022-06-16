@@ -7,6 +7,7 @@ from flask_app.models.medium import Medium
 from flask_app.models.album import Album
 from flask_app.models.keyword import Keyword
 from flask_app.models.song import Song
+from flask_app.models.user import User
 
 # from flask_app.models.song import Song
 
@@ -85,3 +86,62 @@ def new_song_process():
 
     # redirect
     return redirect('/new_song')
+
+# =======================================
+# Render Edit One Song
+# =======================================
+
+
+@app.route('/song/<int:song_id>')
+def show_one_song(song_id):
+    if "user_id" not in session:
+        flash("You have to login or register before entering! no sneaking in!!")
+        return redirect("/")
+
+    data = {
+        "song_id" : song_id,
+        "user_id": session["user_id"]
+    }
+
+    user = User.get_by_id(data)
+
+    all_composers = Composer.get_all_composers(data)
+
+    all_sources = Source.get_all_sources(data)
+
+    all_albums = Album.get_all_albums(data)
+
+    # all_keywords = Keyword.get_all_keywords(data)
+
+    # all_mediums = Medium.get_all_mediums()
+
+    song = Song.get_one_song(data)
+
+    return render_template("edit_song.html", song=song, all_composers=all_composers, all_sources=all_sources, all_albums=all_albums, user=user)
+
+
+# =======================================
+# Process Edit One Song
+# =======================================
+
+@app.route('/song/edit/<int:song_id>/process', methods=['POST'])
+def edit_song_process(song_id):
+
+    data = {
+        "title": request.form["title"],
+        "user_id": request.form["user_id"],
+        "audio": request.form.get("audio"),
+        "composer": request.form["composer"],
+        "source": request.form["source"],
+        "album": request.form["album"],
+        "song_id": song_id
+    }
+
+    # save the new song to the db
+    Song.create_song(data)
+
+    # do I want this flash message or nah?
+    flash("Song has been added! Keep adding more songs, or return to the dashboard to find your new song.")
+
+    # redirect
+    return redirect(f'/song/{song_id}')

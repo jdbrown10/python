@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Song</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Edit {{song.title}}</h1>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <p class="text-danger text-center">{{message}}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form action="/song/edit/{{song.id}}/process" method="POST">
+            <input type="hidden" value="{{ user_id }}" name="user_id">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title:</label>
+                <input type="text" class="form-control" name="title" value="{{song.title}}">
+            </div>
+            <div class="mb-3">
+                <label for="audio" class="form-label">Audio File:</label>
+                <input type="text" class="form-control" name="audio" value="{{song.audio}}">
+            </div>
+            <div class="mb-3">
+                <label for="composer" class="form-label">Composer:</label>
+                <select class="mb-3 form-select" name="composer">
+                    <option selected>{{song.composer.name}}</option>
+                    <option value="">---</option>
+                    {% for composer in all_composers%}
+                    <option value="{{ composer.id }}">{{composer.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="source" class="form-label">Source:</label>
+                <select class="mb-3 form-select" name="source">
+                    <option selected>{{song.source.title}}</option>
+                    <option value="">---</option>
+                    {% for source in all_sources%}
+                    <option value="{{ source.id }}">{{source.title}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="album" class="form-label">Album:</label>
+                <select class="mb-3 form-select" name="album">
+                    <option selected>{{song.album.title}}</option>
+                    <option value="">---</option>
+                    {% for album in all_albums%}
+                    <option value="{{ album.id }}">{{album.title}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <input type="hidden" id="keyword_counter" name="keyword_counter" value="1">
+            <div>
+                <button type="submit" class="btn btn-success">Edit Song</button>
+            </div>
+        </form>
+    </div>
+    <div class="d-flex justify-content-center">
+        <br>
+        <a href="/dashboard" class="btn btn-primary mx-1">Dashboard</a>
+        <a href="/logout" class="btn btn-danger">Logout</a>
+    </div>
+</body>
+
+</html>

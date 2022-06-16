@@ -108,3 +108,46 @@ class Song:
             all_songs.append(song)
 
         return all_songs
+
+    @classmethod
+    def get_one_song(cls, data):
+        query = "SELECT * FROM songs LEFT JOIN composers ON songs.composer_id = composers.id LEFT JOIN albums ON songs.album_id = albums.id LEFT JOIN sources ON songs.source_id = sources.id WHERE songs.id = %(song_id)s;"
+        results = connectToMySQL("music_schema").query_db(query, data)
+
+        song = cls(results[0])
+
+        composer_data = {
+            "id" : results[0]["composers.id"],
+            "name" : results[0]["name"],
+            "created_at" : results[0]["composers.created_at"],
+            "updated_at" : results[0]["composers.updated_at"]
+        }
+
+        album_data = {
+            "id" : results[0]["albums.id"],
+            "title" : results[0]["albums.title"],
+            "created_at" : results[0]["albums.created_at"],
+            "updated_at" : results[0]["albums.updated_at"]
+        }
+
+        source_data = {
+            "id" : results[0]["sources.id"],
+            "title" : results[0]["sources.title"],
+            "created_at" : results[0]["sources.created_at"],
+            "updated_at" : results[0]["sources.updated_at"]
+        }
+
+        song.composer = composer.Composer(composer_data)
+        song.album = album.Album(album_data)
+        song.source = source.Source(source_data)
+
+        return song
+
+    @classmethod
+    def update_song(cls, data):
+        query = "UPDATE songs SET title = %(title)s, audio = %(audio)s, composer_id = %(composer_id)s, source_id = %(source_id)s, album_id = %(album_id)s, updated_at = NOW() WHERE id = %(song_id)s"
+
+        connectToMySQL("tv_schema").query_db(query, data)
+
+        #i don't know why we need "results =" in the above line since i think that function should still run without it and it doens't return anything anyway, but i'll worry about that later
+        return
